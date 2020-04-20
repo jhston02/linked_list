@@ -2,27 +2,27 @@ use std::mem;
 
 enum Link {
     Empty,
-    More(Box<Node>)
+    More(Box<Node>),
 }
 
 struct Node {
-    elem:i32,
-    next:Link
+    elem: i32,
+    next: Link,
 }
 
 pub struct List {
-    head:Link
+    head: Link,
 }
 
 impl List {
     pub fn new() -> Self {
-        List { head:Link::Empty }
+        List { head: Link::Empty }
     }
 
-    pub fn push(&mut self, elem:i32) {
+    pub fn push(&mut self, elem: i32) {
         let node = Box::new(Node {
             elem,
-            next: mem::replace(&mut self.head, Link::Empty)
+            next: mem::replace(&mut self.head, Link::Empty),
         });
 
         self.head = Link::More(node);
